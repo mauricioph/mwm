@@ -1,8 +1,16 @@
 #!/bin/bash
 
-# ~/bin/dwm-statusbar
-# Adapted from w0ng status bar: https://github.com/w0ng/bin
-# Adapted from jasonwryan status bar: https://bitbucket.org/jasonwryan/shiv/src/1ad5950c3108a4e5a9dcb78888a1ccfeb9252b45/Scripts/dwm-status?at=default
+
+kill_others() {
+   local mypid=$$    # capture this run's pid
+
+   declare pids=($(pgrep -f ${0##*/}))   # get all the pids running this script
+
+   for pid in ${pids[@]/$mypid/}; do   # cycle through all pids except this one
+      kill $pid                        # kill the other pids
+      sleep 1                          # give time to complete
+   done
+}
 
 # Colour codes from dwm/config.h
 color0="\x01" # normal  
@@ -29,9 +37,9 @@ print_power() {
   battery="$(cat /sys/class/power_supply/BAT0/capacity)"
   timer="$(acpi -b | grep "Battery" | awk '{print $5}' | cut -c 1-5)"
   if [ "${status}" == 1 ]; then
-    echo -ne "${color6}  PWR  ${color0}ON ${battery}%    "
+    echo -ne "${color6} 🔋 ${color0}ON ${battery}%    "
   else
-    echo -ne "${color6}  PWR  ${color0}${battery}%    "
+    echo -ne "${color6} 🔋 ${color0}${battery}%    "
   fi
 }
 
@@ -39,26 +47,26 @@ print_wifiqual() {
   wifiessid="$(/sbin/iwconfig 2>/dev/null | grep ESSID | cut -d: -f2)"
   wifiawk="$(echo $wifiessid | awk -F',' '{gsub(/"/, "", $1); print $1}')"
   wificut="$(echo $wifiawk | cut -d' ' -f1)"
-  echo -ne "${color6}SSID${color0}  ${wificut}"
+  echo -ne "${color6}🌐${color0} ${wificut}"
 }
 
 print_hddfree() {
   hddfree="$(df -Ph /dev/sda4 | awk '$3 ~ /[0-9]+/ {print $4}')"
-  echo -ne "${color6}  HDD  ${color0}${hddfree}"
+  echo -ne "${color6}  🧠  ${color0}${hddfree}"
 }
 
  print_volume(){
     mix=`amixer get Master | tail -1`
     vol="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
     if [[ $mix == *\[off\]* ]]; then
-      #red 2                                                
+      #red 2                                               
       echo -e "${color6}í${color2} OFF"
     elif [[ $mix == *\[on\]* ]]; then
       #green 9
-      echo -e "${color6}  SND  ${color0}${vol}% "
+      echo -e "${color6} 🕪 ${color0}${vol}% "
     else
       #yellow6
-      echo -e "${color6}  SND  ${color2} ---"
+      echo -e "${color6} 🕪 ${color2} ---"
     fi
  }
 
@@ -70,11 +78,13 @@ print_datetime() {
 
 print_cputemp() {
     cputemp="$(sensors|awk 'BEGIN{i=0;t=0;b=0}/id [0-9]/{b=$4};/Core/{++i;t+=$3}END{if(i>0){printf("%0.1f\n",t/i)}else{sub(/[^0-9.]/,"",b);print b}}')"
-    echo -ne "${color6}TEMP ${color0}${cputemp}  "
+    echo -ne "${color6}🌡 ${color0}${cputemp}  "
 
 }
 
 # cpu (from: https://bbs.archlinux.org/viewtopic.php?pid=661641#p661641)
+
+kill_others
 
 while true; do
   # get new cpu idle and total usage
@@ -85,8 +95,8 @@ while true; do
 
   # output vars
 print_cpu_used() {
-  printf "%-1b" "${color6}CPU${color0}${cpu_used}% "
-#"%-10b" "${color7}CPU:${cpu_used}%"
+  printf "%-1b" "${color6}💻: ${color0}${cpu_used}% "
+#"%-10b" "${color7}💻: ${cpu_used}%"
 }
  
   # Pipe to status bar, not indented due to printing extra spaces/tabs
@@ -98,5 +108,5 @@ print_cpu_used() {
   cpu_idle_old=$cpu_idle_now
   cpu_total_old=$cpu_total_now
   # loop stats every 1 second
-  sleep 1 
+  sleep 1
  done
