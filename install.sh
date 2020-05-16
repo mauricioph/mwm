@@ -9,6 +9,7 @@ chmod +x "${casa}" -R
 echo "Installing dwm, to control backlight and keyboard lights, please make sure to enable the sudo to run the scripts without password for more straight forward workflow"
 sleep 5
 sudo cp screen-backlight keyboard-backlight /usr/local/bin
+sudo chmod +x /usr/local/bin/*backlight 
 sudo cp dwm.desktop /usr/share/xsessions/
 sudo make
 sudo make clean install
