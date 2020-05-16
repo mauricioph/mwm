@@ -52,7 +52,7 @@ These are the features:
 | XF86 KbdBrightnessDown | script keyboard-backlight off |
 
 
-##Install:
+## Install:
 ```
 git clone https://github.com/mauricioph/dwm.git
 cd dwm
