@@ -1,6 +1,15 @@
 # Mauricio's dwm
 My DWM setup nothing fancy. I just wanted to know how to work with DWM, most of my costumisation is based on my setup on i3.
 
+Theme:
+| Colour | HTML Code |
+|--------|-----------|
+| gray1  | #222222 |
+| gray2  | #444444 |
+| gray3  | #bbbbbb |
+| gray4  | #eeeeee |
+| cyan   | #005577 |
+
 These are the features:
 
 | Keybind |  Command |
