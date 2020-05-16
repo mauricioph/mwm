@@ -51,3 +51,19 @@ These are the features:
 | XF86 KbdBrightnessUp | script keyboard-backlight total |
 | XF86 KbdBrightnessDown | script keyboard-backlight off |
 
+
+##Install:
+```
+git clone https://github.com/mauricioph/dwm.git
+cd dwm
+chmod +x install.sh
+./install.sh
+
+# visudo in some distro will allow you to change the sudoers file
+visudo
+
+# add the following replacing the user with your username or group
+
+user ALL= (root) NOPASSWD: /usr/local/bin/screen-backlight
+user ALL= (root) NOPASSWD: /usr/local/bin/keyboard-backlight
+
