@@ -2,7 +2,9 @@
 My DWM setup nothing fancy. I just wanted to know how to work with DWM, most of my costumisation is based on my setup on i3.
 
 These are the features:
-_____________________
+
+| Keybind |  Command |
+|---------|----------|
 | Super + g | VScode |
 | Super + e | power off script |
 | Super + f | Firefox |
