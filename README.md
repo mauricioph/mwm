@@ -46,8 +46,8 @@ These are the features:
 | XF86 AudioRaiseVolume | pactl set-sink-volume 0 +5% |
 | XF86 AudioLowerVolume | pactl set-sink-volume 0 -5% |
 | XF86 AudioMute | pactl set-sink-volume 0 0 |
-| XF86 MonBrightnessUp | sudo screen-backlight up |
-| XF86 MonBrightnessDown | sudo screen-backlight down |
-| XF86 KbdBrightnessUp | sudo keyboard-backlight total |
-| XF86 KbdBrightnessDown | sudo keyboard-backlight off |
+| XF86 MonBrightnessUp | script screen-backlight up |
+| XF86 MonBrightnessDown | script screen-backlight down |
+| XF86 KbdBrightnessUp | script keyboard-backlight total |
+| XF86 KbdBrightnessDown | script keyboard-backlight off |
 
