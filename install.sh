@@ -19,3 +19,8 @@ clear
 echo "Add these lines to your sudoers file, replace user to your user or group
 user ALL= (root) NOPASSWD: /usr/local/bin/screen-backlight
 user ALL= (root) NOPASSWD: /usr/local/bin/keyboard-backlight"
+echo "Also make sure that the path exist for these files"
+echo "/sys/class/backlight/*/brightness The * is the driver for your screen hardware"
+echo "/sys/class/leds/smc::kdb_backlight/brightness is the file for your keyboard"
+echo "If these files does not exist than ignore these instructions"
+
