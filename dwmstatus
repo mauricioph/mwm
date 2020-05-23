@@ -1,11 +1,7 @@
 #!/bin/bash
-
-
 kill_others() {
    local mypid=$$    # capture this run's pid
-
    declare pids=($(pgrep -f ${0##*/}))   # get all the pids running this script
-
    for pid in ${pids[@]/$mypid/}; do   # cycle through all pids except this one
       kill $pid                        # kill the other pids
       sleep 1                          # give time to complete
@@ -47,7 +43,7 @@ print_wifiqual() {
   wifiessid="$(/sbin/iwconfig 2>/dev/null | grep ESSID | cut -d: -f2)"
   wifiawk="$(echo $wifiessid | awk -F',' '{gsub(/"/, "", $1); print $1}')"
   wificut="$(echo $wifiawk | cut -d' ' -f1)"
-  echo -ne "${color6}🌐${color0} ${wificut}"
+  echo -ne "${color6} 🌐 ${color0} ${wificut}"
 }
 
 print_hddfree() {
@@ -78,7 +74,7 @@ print_datetime() {
 
 print_cputemp() {
     cputemp="$(sensors|awk 'BEGIN{i=0;t=0;b=0}/id [0-9]/{b=$4};/Core/{++i;t+=$3}END{if(i>0){printf("%0.1f\n",t/i)}else{sub(/[^0-9.]/,"",b);print b}}')"
-    echo -ne "${color6}🌡 ${color0}${cputemp}  "
+    echo -ne "${color6} 🌡 ${color0}${cputemp} "
 
 }
 
@@ -96,13 +92,10 @@ while true; do
   # output vars
 print_cpu_used() {
   printf "%-1b" "${color6}💻: ${color0}${cpu_used}% "
-#"%-10b" "${color7}💻: ${cpu_used}%"
 }
  
   # Pipe to status bar, not indented due to printing extra spaces/tabs
-  #xsetroot -name "$(print_power)${sp1}$(print_wifiqual)$(print_hddfree)${sp1}$(print_email_count)$(print_pacup)$(print_aurups)$(print_aurphans)${sp2}$(print_volume)${sp2}$(print_datetime)"
   xsetroot -name "$(print_cpu_used) $(print_cputemp)$(print_wifiqual)$(print_hddfree)$(print_volume)$(print_power)$(print_datetime)"
-  #xsetroot -name "$(print_song_info)$(print_power)${sp1}$(print_wifiqual)$(print_hddfree)${sp2}$(print_volume)${sp2}$(print_datetime)"
 
   # reset old rates
   cpu_idle_old=$cpu_idle_now
