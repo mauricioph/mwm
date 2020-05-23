@@ -3,7 +3,7 @@
 casa="$HOME/.config/dwm/"
 
 [[ -d ${casa} ]] || mkdir "${casa}"
-cp autostart.sh dwmstatus poweroff.py "${casa}"
+cp autostart.sh dwmstatus lock-fusy.sh poweroff.py "${casa}"
 chmod +x "${casa}" -R
 
 echo "Installing dwm, to control backlight and keyboard lights, please make sure to enable the sudo to run the scripts without password for more straight forward workflow"
