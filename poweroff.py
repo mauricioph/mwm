@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 # based on cb-exit used in CrunchBang Linux <http://crunchbanglinux.org/>
 # modified by Mauricio L. M.
@@ -6,11 +6,6 @@
 import pygtk
 pygtk.require('2.0')
 import gtk
-
-# import gi
-# gi.require_version('gtk., '3.0')
-# from gi.repository import Gtk
-
 import os
 import getpass
 import subprocess
