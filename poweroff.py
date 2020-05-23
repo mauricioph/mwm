@@ -13,8 +13,9 @@ import gtk
 
 import os
 import getpass
+import subprocess
 
-class i3_exit:
+class dwm_exit:
     def disable_buttons(self):
         self.cancel.set_sensitive(False)
         self.logout.set_sensitive(False)
@@ -28,8 +29,9 @@ class i3_exit:
 
     def logout_action(self,btn):
         self.disable_buttons()
-        self.status.set_label("Exiting i3, please standby...")
-        os.system("i3-msg exit")
+        self.status.set_label("Exiting dwm, please standby")
+        session = subprocess.check_output("loginctl list-sessions | sed -n 2p | awk '{print $1}'", shell=True)
+        subprocess.call("loginctl terminate-session %s" %(session), shell=True)
 
     def suspend_action(self,btn):
         self.disable_buttons()
@@ -125,5 +127,5 @@ def main():
     gtk.main()
 
 if __name__ == "__main__":
-    go = i3_exit()
+    go = dwm_exit()
     main()
