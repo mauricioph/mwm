@@ -11,6 +11,7 @@ Theme:
 | cyan   | #005577 |
 
 These are the features:
+[!Keybpard Layout](https://github.com/mauricioph/dwm/blob/master/mac-us-international-keyboard_1024x1024.png?raw=true)
 
 | Keybind |  Command |
 |---------|----------|
