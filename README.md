@@ -2,16 +2,17 @@
 My DWM setup nothing fancy. I just wanted to know how to work with DWM, most of my costumisation is based on my setup on i3.
 
 Theme:
-| Colour | HTML Code |
-|--------|-----------|
-| gray1  | #222222 |
-| gray2  | #444444 |
-| gray3  | #bbbbbb |
-| gray4  | #eeeeee |
-| cyan   | #005577 |
+| Colour  | HTML Code | Position |
+|---------|-----------|----------|
+| orange  |  #c37306  | Selected |
+| D.Red   |  #990000  | Sel Text |
+| L.D.Red |  #880000  | Sel.W.B  |
+| White   |  #ffffff  | All Text |
+| D.cyan  |  #1d4664  | Bar BG   |
+
 
 These are the features:
-![Keybpard Layout](https://github.com/mauricioph/dwm/blob/master/mac-us-international-keyboard_1024x1024.png?raw=true)
+![Keybpard Layout](https://github.com/mauricioph/dwm/images/blob/master/mac-us-international-keyboard_1024x1024.png?raw=true)
 
 | Keybind |  Command |
 |---------|----------|
