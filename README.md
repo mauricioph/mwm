@@ -5,8 +5,8 @@ Theme:
 | Colour  | HTML Code | Position |
 |---------|-----------|----------|
 | orange  |  #c37306  | Selected |
-| D.Red   |  #990000  | Selected Text |
-| L.D.Red |  #880000  | Selected Window Border  |
+| D.Red   |  #232629  | Selected Text |
+| L.D.Red |  #232629  | Selected Window Border  |
 | White   |  #ffffff  | All Text |
 | D.cyan  |  #1d4664  | Bar/Border @ stack   |
 
