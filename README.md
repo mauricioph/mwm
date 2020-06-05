@@ -9,6 +9,7 @@ Theme:
 | L.D.Red |  #232629  | Selected Window Border  |
 | White   |  #ffffff  | All Text |
 | D.cyan  |  #1d4664  | Bar/Border @ stack   |
+![Keybpard Layout](https://github.com/mauricioph/dwm/blob/master/images/Preview.png?raw=true)
 
 
 These are the features:
