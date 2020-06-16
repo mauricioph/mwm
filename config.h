@@ -72,7 +72,7 @@ static const char *firefoxcmd[] = {"firefox", NULL };
 static const char *codecmd[] = {"code", NULL };
 static const char *poweroffcmd[] = {"python2", "/home/mauricio/.config/dwm/poweroff.py", NULL };
 static const char *lockcmd[] = {"bash","/home/mauricio/.config/dwm/lock-fusy.sh", NULL };
-static const char *connectnetcmd[] = {"nmcli", "c", "up", "3e5e8aa3-b981-496b-9fd2-ec767675d1e8", NULL };
+static const char *connectnetcmd[] = {"nmcli", "c", "up", "3ce41249-a574-4e46-815e-e49cc01dcc6f", NULL };
 
 #include <X11/XF86keysym.h>
 
