@@ -1,6 +1,6 @@
 #!/bin/bash
 house="${HOME}/.config/dwm"
-"${house}/dwmstatus" &
+"${house}/scripts/ligamento" &
 compton -i $HOME/.config/compton.conf &
 /usr/local/bin/wallpaper.script &
 conky &
