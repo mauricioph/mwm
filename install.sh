@@ -2,9 +2,16 @@
 
 casa="$HOME/.config/dwm/"
 
-[[ -d ${casa} ]] || mkdir "${casa}"
-cp autostart.sh dwmstatus lock-fusy.sh poweroff.py "${casa}"
-chmod +x "${casa}" -R
+[[ ! -d ${casa} ]] || mkdir "${casa}"
+cp -rf autostart.sh dwmstatus lock-fusy.sh poweroff.py scripts/ "${casa}"
+find ${casa} -type f -exec chmod +x "{}" \;
+
+[[ ! -d ${HOME}/.local/bin ]] && mkdir -p ${HOME}/.local/bin/
+export PATH=$PATH:$HOME/.local/bin/
+
+for i in ${casa}scripts/*
+do ln -s ${i} $HOME/.local/bin/
+done
 
 echo "Installing dwm, to control backlight and keyboard lights, please make sure to enable the sudo to run the scripts without password for more straight forward workflow"
 sleep 5
