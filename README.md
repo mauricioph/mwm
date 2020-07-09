@@ -1,9 +1,12 @@
 # Mauricio's dwm
-My DWM setup nothing fancy. I just wanted to know how to work with DWM, most of my costumisation is based on my setup on i3.
+My DWM setup nothing fancy, yet. I just wanted to know how to work with DWM, most of my costumisation is based on my setup on i3.
 
 ![Preview](https://github.com/mauricioph/dwm/blob/master/images/Preview.png?raw=true)
 
-Theme:
+## Patches on this build
+Transient window, Fibonacci layout, status commands and hide vacant tags.
+
+## Theme:
 | Colour  | HTML Code | Position |
 |---------|-----------|----------|
 | orange  |  #c37306  | Selected |
@@ -13,7 +16,7 @@ Theme:
 | D.cyan  |  #1d4664  | Bar/Border @ stack   |
 
 
-These are the features:
+## These are the Keybinds:
 ![Keybpard Layout](https://github.com/mauricioph/dwm/blob/master/images/mac-us-international-keyboard_1024x1024.png?raw=true)
 
 | Keybind |  Command |
@@ -47,6 +50,7 @@ These are the features:
 | Super + Shift + e | exit dwm |
 | Super + Shift + q | Quit the programs |
 | Super + Shift + t | Lockscreen script |
+| Super + Shift + ENTER | swap focused window with Master |
 | XF86 AudioRaiseVolume | pactl set-sink-volume 0 +5% |
 | XF86 AudioLowerVolume | pactl set-sink-volume 0 -5% |
 | XF86 AudioMute | pactl set-sink-volume 0 0 |
@@ -70,4 +74,3 @@ visudo
 
 user ALL= (root) NOPASSWD: /usr/local/bin/screen-backlight
 user ALL= (root) NOPASSWD: /usr/local/bin/keyboard-backlight
-
