@@ -1,31 +1,33 @@
 #!/bin/bash
+originaloc=$HOME/.config/dwm/scripts/
 
 bateria(){
-bat=$($HOME/.config/dwm/scripts/battery)
-
+bat=$(${originaloc}battery)
 }
 
 relogio(){
-clock=$($HOME/.config/dwm/scripts/clock)
+clock=$(${originaloc}clock)
 }
 
 processador(){
-cpu=$($HOME/.config/dwm/scripts/cpu)
+cpu=$(${originaloc}cpu)
 }
 
 disco(){
-home=$($HOME/.config/dwm/scripts/disk /home)
-root=$($HOME/.config/dwm/scripts/disk /)
+home=$(${originaloc}disk /home)
+root=$(${originaloc}disk /)
 }
 
 internet(){
-inter=$($HOME/.config/dwm/scripts/internet)
+inter=$(${originaloc}internet)
 }
+
 volume(){
-vol=$($HOME/.config/dwm/scripts/volume)
+vol=$(${originaloc}volume)
 }
+
 musica(){
-music=$($HOME/.config/dwm/scripts/music)
+music=$(${originaloc}musica)
 }
 
 while [ 1 ]
@@ -37,6 +39,6 @@ internet
 volume
 musica
 
-xsetroot -name "${cpu} | ${inter} | ${home} | ${root} | ${musica} ${vol} | ${bat} | ${clock}"
-sleep 1
+xsetroot -name "${cpu} | ${inter} | ${home} | ${root} | ${vol} | ${bat} | ${clock}"
+sleep 1m
 done
