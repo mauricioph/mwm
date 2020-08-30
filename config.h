@@ -1,9 +1,9 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 10;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const int borderalpha	    = 0xbb;	/* border alpha for windows */
-static const unsigned int gappx     = 5;        /* gaps between windows */
+static const unsigned int gappx     = 15;        /* gaps between windows */
 static const int onegap		    = 0;	/* 1: diff gappx if one client 0: no gap if one client  */
 static const unsigned int onegappx  = 100;	/* single window gap px */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -64,8 +64,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "rofi", "-show", "run", "-width 30" , NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *dmenucmd[] = { "rofi", "-show", "run", "-width 20" , NULL };
+static const char *termcmd[]  = { "uxterm", NULL };
 static const char *audioedtcmd[] = {"audacity", NULL };
 static const char *vlccmd[] = {"vlc", NULL };
 static const char *firefoxcmd[] = {"firefox", NULL };
@@ -92,7 +92,7 @@ static Key keys[] = {
    	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefoxcmd }},     /* Firefox */
    	{ MODKEY,                       XK_e,      spawn,          {.v = poweroffcmd }},    /* Power off */
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = lockcmd }},        /* Lock screen */
-	{ MODKEY,						XK_n,	   spawn,		   {.v = connectnetcmd }}, /* Connect wifi to flat */
+	{ MODKEY,			XK_n,	   spawn,	   {.v = connectnetcmd }}, /* Connect wifi to flat */
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
