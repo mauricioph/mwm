@@ -61,6 +61,8 @@ Transient window, Fibonacci layout, status commands and hide vacant tags.
 
 
 ## Install:
+Using the install script will add the session desktop file for lightdm and others display managers at /usr/share/xsession.d/ and the scripts to autostart the programs and control keyboard and screen backlights.
+
 ```
 git clone https://github.com/mauricioph/dwm.git
 cd dwm
