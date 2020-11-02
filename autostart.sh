@@ -1,5 +1,5 @@
 #!/bin/bash
-house="${HOME}/.config/dwm"
+house="${HOME}/.config/mwm"
 "${house}/scripts/ligamento" &
 compton -i $HOME/.config/compton.conf &
 /usr/local/bin/wallpaper.script &
@@ -10,4 +10,4 @@ play /usr/share/sounds/Ps1\ startup\ sound.flac &
 sleep 30 &
 /opt/appimages/Nextcloud-3.0.1-x86_64.AppImage &
 notify-send "Started all programmes" &
-xautolock -time 5 -locker "/home/mauricio/.config/dwm/lock-fusy.sh" -secure -detectsleep &
+xautolock -time 5 -locker "/home/mauricio/.config/mwm/lock-fusy.sh" -secure -detectsleep &

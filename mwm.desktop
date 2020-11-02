@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=MWM
+Comment=Real dynamic tiling window manager
+Exec=mwm
+TryExec=mwm
+Type=Application
+X-LightDM-DesktopName=mwm
+DesktopNames=mwm
+Keywords=tiling;wm;windowmanager;window;manager;

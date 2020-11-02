@@ -1,9 +1,9 @@
 #!/bin/bash
 
-casa="$HOME/.config/dwm/"
+casa="$HOME/.config/mwm/"
 
 [[ ! -d ${casa} ]] || mkdir "${casa}"
-cp -rf autostart.sh dwmstatus lock-fusy.sh poweroff.py scripts/ "${casa}"
+cp -rf autostart.sh mwmstatus lock-fusy.sh poweroff.py scripts/ "${casa}"
 find ${casa} -type f -exec chmod +x "{}" \;
 
 [[ ! -d ${HOME}/.local/bin ]] && mkdir -p ${HOME}/.local/bin/
@@ -13,11 +13,11 @@ for i in ${casa}scripts/*
 do ln -s ${i} $HOME/.local/bin/
 done
 
-echo "Installing dwm, to control backlight and keyboard lights, please make sure to enable the sudo to run the scripts without password for more straight forward workflow"
+echo "Installing mwm, to control backlight and keyboard lights, please make sure to enable the sudo to run the scripts without password for more straight forward workflow"
 sleep 5
 sudo cp screen-backlight keyboard-backlight /usr/local/bin
 sudo chmod +x /usr/local/bin/*backlight 
-sudo cp dwm.desktop /usr/share/xsessions/
+sudo cp mwm.desktop /usr/share/xsessions/
 sudo make
 sudo make clean install
 sleep 5

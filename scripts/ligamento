@@ -1,5 +1,5 @@
 #!/bin/bash
-originaloc=$HOME/.config/dwm/scripts/
+originaloc=$HOME/.config/mwm/scripts/
 
 bateria(){
 bat=$(${originaloc}battery)

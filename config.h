@@ -9,7 +9,7 @@ static const unsigned int onegappx  = 100;	/* single window gap px */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 25;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int user_bh            = 25;        /* 0 means that mwm will calculate bar height, >= 1 means mwm will user_bh as bar height */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_orange[]       = "#c37306"; /* Bar colour */
@@ -60,7 +60,7 @@ static const Layout layouts[] = {
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
-/* helper for spawning shell commands in the pre dwm-5.0 fashion */
+/* helper for spawning shell commands in the pre mwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
@@ -71,8 +71,8 @@ static const char *audioedtcmd[] = {"audacity", NULL };
 static const char *vlccmd[] = {"vlc", NULL };
 static const char *firefoxcmd[] = {"firefox", NULL };
 static const char *codecmd[] = {"code", NULL };
-static const char *poweroffcmd[] = {"python2", "/home/mauricio/.config/dwm/poweroff.py", NULL };
-static const char *lockcmd[] = {"bash","/home/mauricio/.config/dwm/lock-fusy.sh", NULL };
+static const char *poweroffcmd[] = {"python2", "/home/mauricio/.config/mwm/poweroff.py", NULL };
+static const char *lockcmd[] = {"bash","/home/mauricio/.config/mwm/lock-fusy.sh", NULL };
 static const char *connectnetcmd[] = {"nmcli", "c", "up", "3ce41249-a574-4e46-815e-e49cc01dcc6f", NULL };
 
 #include <X11/XF86keysym.h>
