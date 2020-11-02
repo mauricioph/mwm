@@ -1,7 +1,7 @@
-# Mauricio's dwm
-My DWM setup nothing fancy, yet. I just wanted to know how to work with DWM, most of my costumisation is based on my setup on i3.
+# Mauricio's mwm
+My MWM setup nothing fancy, yet. I just wanted to know how to work with MWM, most of my costumisation is based on my setup on i3.
 
-![Preview](https://github.com/mauricioph/dwm/blob/master/images/Preview.png?raw=true)
+![Preview](https://github.com/mauricioph/mwm/blob/master/images/Preview.png?raw=true)
 
 ## Patches on this build
 Transient window, Fibonacci layout, status commands and hide vacant tags.
@@ -17,7 +17,7 @@ Transient window, Fibonacci layout, status commands and hide vacant tags.
 
 
 ## These are the Keybinds:
-![Keybpard Layout](https://github.com/mauricioph/dwm/blob/master/images/mac-us-international-keyboard_1024x1024.png?raw=true)
+![Keybpard Layout](https://github.com/mauricioph/mwm/blob/master/images/mac-us-international-keyboard_1024x1024.png?raw=true)
 
 | Keybind |  Command |
 |---------|----------|
@@ -47,7 +47,7 @@ Transient window, Fibonacci layout, status commands and hide vacant tags.
 | Super + Shift + t | Toggle Layout to Vertical Master/Stack|
 | Super + Shift + f | Toggle Layout to Vertical Master/Stack|
 | Super + Shift + r | Toggle Layout to Dwindle |
-| Super + Shift + e | exit dwm |
+| Super + Shift + e | exit mwm |
 | Super + Shift + q | Quit the programs |
 | Super + Shift + t | Lockscreen script |
 | Super + Shift + ENTER | swap focused window with Master |
@@ -64,8 +64,8 @@ Transient window, Fibonacci layout, status commands and hide vacant tags.
 Using the install script will add the session desktop file for lightdm and others display managers at /usr/share/xsessions/ and the scripts to autostart the programs and control keyboard and screen backlights.
 
 ```
-git clone https://github.com/mauricioph/dwm.git
-cd dwm
+git clone https://github.com/mauricioph/mwm.git
+cd mwm
 chmod +x install.sh
 ./install.sh
 
