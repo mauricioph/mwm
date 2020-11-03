@@ -1,4 +1,6 @@
-# mwm - dynamic window manager
+# dwm - dynamic window manager
+# renamed and modified to be 
+# mwm - Maurice's Window Manager
 # See LICENSE file for copyright and license details.
 
 include config.mk
@@ -17,7 +19,7 @@ options:
 .c.o:
 	${CC} -c ${CFLAGS} $<
 
-${OBJ}: config.h config.mk
+${OBJ}: config.mk
 
 config.h:
 	cp config.def.h $@
