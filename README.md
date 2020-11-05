@@ -1,10 +1,21 @@
 # Mauricio's mwm
-My MWM setup nothing fancy, yet. I just wanted to know how to work with MWM, most of my costumisation is based on my setup on i3.
+This is a fork of dwm but with my taste of what is good. Therefore here is what is on this built:
+1. No config file, configuration is really done at the source code mwm.c so no config.h
+1. Gaps between windows
+1. Colours based on Matthew's desktop from DH4
+1. Hidden unactive tags
+1. Fibonnacci layout
+1. Dwindle layout
+1. Autostart
+1. Bar height
 
 ![Preview](https://github.com/mauricioph/mwm/blob/master/images/Preview.png?raw=true)
+![Rofi](https://github.com/mauricioph/mwm/blob/master/images/rofi.png?raw=true)
+![Gaps](https://github.com/mauricioph/mwm/blob/master/images/gaps.png?raw=true)
+![Fullscreen](https://github.com/mauricioph/mwm/blob/master/images/Fullscreen.png?raw=true)
+![Fibonnacci](https://github.com/mauricioph/mwm/blob/master/images/Fibonnacci.png?raw=true)
+![Floating](https://github.com/mauricioph/mwm/blob/master/images/Floating.png?raw=true)
 
-## Patches on this build
-Transient window, Fibonacci layout, status commands and hide vacant tags.
 
 ## Theme:
 | Colour  | HTML Code | Position |
@@ -76,3 +87,5 @@ visudo
 
 user ALL= (root) NOPASSWD: /usr/local/bin/screen-backlight
 user ALL= (root) NOPASSWD: /usr/local/bin/keyboard-backlight
+user ALL= (root) NOPASSWD: /usr/local/bin/usb-mounter
+

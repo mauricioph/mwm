@@ -1,0 +1,17 @@
+#!/bin/bash
+# usb mounter
+mounter=$(lsblk -lp | grep "part $" | awk '{print $1 " ( " $4 " ) "}')
+dispositivo=$(echo "${mounter}" | dmenu -p "Which device to mount?" | awk '{print $1}')
+
+mount "${dispositivo}"
+
+monted=$(mount | grep "${dispositivo}" | awk '{print $3}')
+
+[ -z "${monted}" ] && echo "Select where to mount it" || echo "mounted on ${monted}"
+
+dirs=$(find /mnt /media -maxdepth 3 -type d  2>/dev/null)
+here=$(echo "${dirs}" | dmenu -p "Select the folder")
+
+mount "${dispositivo}" "${here}"
+
+[ -z "${monted}" ] && echo "Select where to mount it" || echo "mounted on ${monted}"

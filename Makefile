@@ -21,8 +21,8 @@ options:
 
 ${OBJ}: config.mk
 
-config.h:
-	cp config.def.h $@
+#config.h:
+#	cp config.def.h $@
 
 mwm: ${OBJ}
 	${CC} -o $@ ${OBJ} ${LDFLAGS}
@@ -32,8 +32,7 @@ clean:
 
 dist: clean
 	mkdir -p mwm-${VERSION}
-	cp -R LICENSE Makefile README config.def.h config.mk\
-		mwm.1 drw.h util.h ${SRC} mwm.png transient.c mwm-${VERSION}
+	cp -R LICENSE Makefile README.md config.mk mwm.1 drw.h util.h ${SRC} mwm.png transient.c scripts/ mwm-${VERSION}
 	tar -cf mwm-${VERSION}.tar mwm-${VERSION}
 	gzip mwm-${VERSION}.tar
 	rm -rf mwm-${VERSION}

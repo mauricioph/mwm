@@ -237,6 +237,7 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
+static void autostart_exec(void);
 
 /* variables */
 static const char broken[] = "broken title";
@@ -300,6 +301,16 @@ static const char *colors[][3]      = {
 	[SchemeNorm]  = { col_white, col_dcyan,  col_dcyan  },
 	[SchemeSel] = { col_ldred, col_orange, col_dred },
 };
+
+static const char *const autostart[] = {
+	"conky", NULL,
+	"/usr/local/bin/battery-level", NULL,
+	"/opt/appimages/Nextcloud-3.0.1-x86_64.AppImage", NULL,
+	"xautolock","-time 5","-locker","/home/mauricio/.config/mwm/scripts/lock-fusy.sh","-secure","-detectsleep", NULL,
+	NULL /* terminate */
+};
+
+
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -418,9 +429,9 @@ static const char *termcmd[]  = { "uxterm", NULL };
 static const char *audioedtcmd[] = {"audacity", NULL };
 static const char *vlccmd[] = {"vlc", NULL };
 static const char *firefoxcmd[] = {"firefox", NULL };
-static const char *codecmd[] = {"code", NULL };
-static const char *poweroffcmd[] = {"python2", "/home/mauricio/.config/mwm/poweroff.py", NULL };
-static const char *lockcmd[] = {"bash","/home/mauricio/.config/mwm/lock-fusy.sh", NULL };
+static const char *usbmcmd[] = {"gksudo", "/home/mauricio/.config/mwm/scripts/usb-mounter", NULL };
+static const char *poweroffcmd[] = {"python2", "/home/mauricio/.config/mwm/scripts/poweroff.py", NULL };
+static const char *lockcmd[] = {"bash","/home/mauricio/.config/mwm/scripts/lock-fusy.sh", NULL };
 /* static const char *connectnetcmd[] = {"nmcli", "c", "up", "3ce41249-a574-4e46-815e-e49cc01dcc6f", NULL }; */
 
 #include <X11/XF86keysym.h>
@@ -437,7 +448,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },        /* st Terminal */
    	{ MODKEY,                       XK_a,      spawn,          {.v = audioedtcmd }},    /* Audio Editor */
    	{ MODKEY,                       XK_v,      spawn,          {.v = vlccmd }},         /* VLC Media Player */
-   	{ MODKEY,                       XK_g,      spawn,          {.v = codecmd }},        /* VSCode */
+   	{ MODKEY,                       XK_g,      spawn,          {.v = usbmcmd }},        /* usb mounter */
    	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefoxcmd }},     /* Firefox */
    	{ MODKEY,                       XK_e,      spawn,          {.v = poweroffcmd }},    /* Power off */
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = lockcmd }},        /* Lock screen */
@@ -509,6 +520,35 @@ static Button buttons[] = {
 
 /* compile-time check if all tags fit into an unsigned int bit array. */
 struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };
+
+/* dwm will keep pid's of processes from autostart array and kill them at quit */
+static pid_t *autostart_pids;
+static size_t autostart_len;
+
+/* execute command from autostart array */
+static void
+autostart_exec() {
+	const char *const *p;
+	size_t i = 0;
+
+/* count entries */
+	for (p = autostart; *p; autostart_len++, p++)
+		while (*++p);
+
+	autostart_pids = malloc(autostart_len * sizeof(pid_t));
+	for (p = autostart; *p; i++, p++) {
+		if ((autostart_pids[i] = fork()) == 0) {
+			setsid();
+			execvp(*p, (char *const *)p);
+			fprintf(stderr, "mwm: execvp %s\n", *p);
+			perror(" failed");
+			_exit(EXIT_FAILURE);
+		}
+/* skip arguments */
+		while (*++p);
+	}
+}
+
 
 /* function implementations */
 void
@@ -1521,6 +1561,16 @@ propertynotify(XEvent *e)
 void
 quit(const Arg *arg)
 {
+	size_t i;
+
+	/* kill child processes */
+	for (i = 0; i < autostart_len; i++) {
+		if (0 < autostart_pids[i]) {
+			kill(autostart_pids[i], SIGTERM);
+			waitpid(autostart_pids[i], NULL, 0);
+		}
+	}
+
 	running = 0;
 }
 
@@ -1655,8 +1705,8 @@ run(void)
 
 void
 runAutostart(void){
-	system("cd ~/.config/mwm; ./autostart_blocking.sh");
-	system("cd ~/.config/mwm; ./autostart.sh &");
+	system("cd ~/.config/mwm/scripts; ./autostart_blocking.sh");
+	system("cd ~/.config/mwm/scripts; ./autostart.sh &");
 }
 
 void
@@ -1919,10 +1969,25 @@ showhide(Client *c)
 
 void
 sigchld(int unused)
-{
+{	pid_t pid;
+
 	if (signal(SIGCHLD, sigchld) == SIG_ERR)
 		die("can't install SIGCHLD handler:");
-	while (0 < waitpid(-1, NULL, WNOHANG));
+	while (0 < (pid = waitpid(-1, NULL, WNOHANG))) {
+		pid_t *p, *lim;
+
+		if (!(p = autostart_pids))
+			continue;
+		lim = &p[autostart_len];
+
+		for (; p < lim; p++) {
+			if (*p == pid) {
+				*p = -1;
+				break;
+			}
+		}
+
+	}
 }
 
 void
@@ -2431,6 +2496,7 @@ main(int argc, char *argv[])
 	if (!(dpy = XOpenDisplay(NULL)))
 		die("mwm: cannot open display");
 	checkotherwm();
+	autostart_exec();
 	setup();
 #ifdef __OpenBSD__
 	if (pledge("stdio rpath proc exec", NULL) == -1)
