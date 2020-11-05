@@ -304,16 +304,18 @@ static const char *colors[][3]      = {
 
 static const char *const autostart[] = {
 	"conky", NULL,
+	"compton", "-i $HOME/.config/compton.conf", NULL,
 	"/usr/local/bin/battery-level", NULL,
 	"/opt/appimages/Nextcloud-3.0.1-x86_64.AppImage", NULL,
-	"xautolock","-time 5","-locker","/home/mauricio/.config/mwm/scripts/lock-fusy.sh","-secure","-detectsleep", NULL,
+	"xautolock", "-time 5", "-locker", "/home/mauricio/.config/mwm/scripts/lock-fusy.sh", "-secure", "-detectsleep", NULL,
+	"play", "/usr/share/sounds/Ps1 startup sound.flac", NULL,
 	NULL /* terminate */
 };
 
 
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
 
 static const Rule rules[] = {
 	/* xprop(1):
