@@ -3,8 +3,8 @@
 casa="$HOME/.config/mwm/"
 
 [[ ! -d ${casa} ]] || mkdir "${casa}"
-cp -rf autostart.sh scripts/ "${casa}"
-find ${casa} -type f -exec chmod +x "{}" \;
+cp -rf scripts/ "${casa}"
+find ${casa}scripts/ -type f -exec chmod +x "{}" \;
 
 [[ ! -d ${HOME}/.local/bin ]] && mkdir -p ${HOME}/.local/bin/
 export PATH=$PATH:$HOME/.local/bin/
@@ -15,8 +15,9 @@ done
 
 echo "Installing mwm, to control backlight and keyboard lights, please make sure to enable the sudo to run the scripts without password for more straight forward workflow"
 sleep 5
-sudo cp scripts/screen-backlight scripts/keyboard-backlight /usr/local/bin
-sudo chmod +x /usr/local/bin/*backlight 
+sudo cp scripts/usb-mounter scripts/screen-backlight scripts/keyboard-backlight /usr/local/bin
+sudo chmod +x /usr/local/bin/*backlight
+sudo chmod +x /usr/local/bin/usb-mounter
 sudo cp mwm.desktop /usr/share/xsessions/
 sudo make
 sudo make clean install
@@ -26,6 +27,7 @@ clear
 echo "Add these lines to your sudoers file, replace user to your user or group
 user ALL= (root) NOPASSWD: /usr/local/bin/screen-backlight
 user ALL= (root) NOPASSWD: /usr/local/bin/keyboard-backlight"
+user ALL= (root) NOPASSWD: /usr/local/bin/usb-mounter"
 echo "Also make sure that the path exist for these files"
 echo "/sys/class/backlight/*/brightness The * is the driver for your screen hardware"
 echo "/sys/class/leds/smc::kdb_backlight/brightness is the file for your keyboard"

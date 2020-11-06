@@ -32,7 +32,7 @@ clean:
 
 dist: clean
 	mkdir -p mwm-${VERSION}
-	cp -R LICENSE Makefile README.md config.mk mwm.1 drw.h util.h ${SRC} mwm.png transient.c scripts/ mwm-${VERSION}
+	cp -R LICENSE Makefile README.md config.mk mwm.desktop install.sh mwm.1 drw.h util.h ${SRC} mwm.png transient.c scripts/ mwm-${VERSION}
 	tar -cf mwm-${VERSION}.tar mwm-${VERSION}
 	gzip mwm-${VERSION}.tar
 	rm -rf mwm-${VERSION}

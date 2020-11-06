@@ -292,7 +292,7 @@ static const int user_bh            = 25;        /* 0 means that mwm will calcul
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_orange[]       = "#c37306"; /* Bar colour */
-static const char col_dred[]       = "#232629"; /* Secondary Window Border colour */
+static const char col_dred[]       = "#353535"; /* Secondary Window Border colour */
 static const char col_ldred[]       = "#232629"; /* All text colour */
 static const char col_white[]       = "#FFFFFF"; /* Text colour of Selection */
 static const char col_dcyan[]        = "#1d4664"; /* Main Background Colour Of selection */
@@ -315,7 +315,7 @@ static const char *const autostart[] = {
 
 
 /* tagging */
-static const char *tags[] = { "1", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
+static const char *tags[] = { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
 
 static const Rule rules[] = {
 	/* xprop(1):
