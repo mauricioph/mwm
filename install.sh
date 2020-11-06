@@ -26,7 +26,7 @@ sleep 5
 clear
 echo "Add these lines to your sudoers file, replace user to your user or group
 user ALL= (root) NOPASSWD: /usr/local/bin/screen-backlight
-user ALL= (root) NOPASSWD: /usr/local/bin/keyboard-backlight"
+user ALL= (root) NOPASSWD: /usr/local/bin/keyboard-backlight
 user ALL= (root) NOPASSWD: /usr/local/bin/usb-mounter"
 echo "Also make sure that the path exist for these files"
 echo "/sys/class/backlight/*/brightness The * is the driver for your screen hardware"
