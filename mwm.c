@@ -59,7 +59,8 @@
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
-enum { SchemeNorm, SchemeSel }; /* color schemes */
+enum { SchemeNorm, SchemeSel, SchemeWarn, SchemeUrgent }; /* color schemes */
+
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
        NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
@@ -296,10 +297,16 @@ static const char col_dred[]       = "#353535"; /* Secondary Window Border colou
 static const char col_ldred[]       = "#232629"; /* All text colour */
 static const char col_white[]       = "#FFFFFF"; /* Text colour of Selection */
 static const char col_dcyan[]        = "#1d4664"; /* Main Background Colour Of selection */
+static const char col_black[]       = "#000000"; /* Black */
+static const char col_red[]         = "#ff0000"; /* Red for Urgency */
+static const char col_yellow[]      = "#ffff00"; /* Yelow to alert the user */
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm]  = { col_white, col_dcyan,  col_dcyan  },
-	[SchemeSel] = { col_ldred, col_orange, col_dred },
+	[SchemeNorm]	= { col_white, col_dcyan,  col_dcyan  },
+	[SchemeSel]		= { col_ldred, col_orange, col_dred },
+	[SchemeWarn]	= { col_black, col_yellow, col_red },
+	[SchemeUrgent]	= { col_white, col_red, col_red },
 };
 
 static const char *const autostart[] = {
@@ -1014,14 +1021,28 @@ drawbar(Monitor *m)
 	int boxs = drw->fonts->h / 9;
 	int boxw = drw->fonts->h / 6 + 2;
 	unsigned int i, occ = 0, urg = 0;
+	char *ts = stext;
+	char *tp = stext;
+	int tx = 0;
+	char ctmp;
 	Client *c;
 
 	/* draw status first so it can be overdrawn by tags later */
 	if (m == selmon) { /* status is only drawn on selected monitor */
 		drw_setscheme(drw, scheme[SchemeNorm]);
 		sw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
-		drw_text(drw, m->ww - sw, 0, sw, bh, 0, stext, 0);
-	}
+	while (1) {
+		if ((unsigned int)*ts > LENGTH(colors)) { ts++; continue ; }
+			ctmp = *ts;
+			*ts = '\0';
+			drw_text(drw, m->ww - sw + tx, 0, sw - tx, bh, 0, tp, 0);
+			tx += TEXTW(tp) -lrpad;
+		if (ctmp == '\0') { break; }
+			drw_setscheme(drw, scheme[(unsigned int)(ctmp-1)]);
+			*ts = ctmp;
+			tp = ++ts;
+		}
+}
 
 	for (c = m->clients; c; c = c->next) {
 		occ |= c->tags == 255 ? 0 : c->tags;
