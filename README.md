@@ -5,10 +5,11 @@ This is a fork of dwm, but not following the suckless philosofy of keeping it un
 1. Colours based on Matthew's desktop from DH4
 1. Hidden inactive tags
 1. Fibonnacci layout
-1. Tile layout
-1. Autostart from the source code and from [home]/.config/mwm/scripts/autostart.sh
+1. Dwindle layout ( Fibonnacci on the opposite direction )
+1. Autostart from the source code and from $HOME/.config/mwm/scripts/autostart.sh
 *You should deffinetly check this seccion and edit to reflect your system.*
 1. Bar height
+1. Status bar colored.
 
 ![Gaps](https://github.com/mauricioph/mwm/blob/master/images/gaps.png?raw=true)
 ![Fullscreen](https://github.com/mauricioph/mwm/blob/master/images/Fullscreen.png?raw=true)
