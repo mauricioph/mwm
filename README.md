@@ -1,11 +1,11 @@
 # Mauricio's mwm
 This is a fork of dwm, but not following the suckless philosofy of keeping it under 2000 SLOC. Therefore my version has 2.5++ lines and here is what is on this built:
 1. No config file, configuration is really done at the main source code (mwm.c)
-1. Gaps between windows on Dwindle layout
+1. Gaps between windows on Tile layout
 1. Colours based on Matthew's desktop from DH4
-1. Hidden unactive tags
+1. Hidden inactive tags
 1. Fibonnacci layout
-1. Dwindle layout
+1. Tile layout
 1. Autostart from the source code and from [home]/.config/mwm/scripts/autostart.sh
 *You should deffinetly check this seccion and edit to reflect your system.*
 1. Bar height
