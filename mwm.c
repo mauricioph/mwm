@@ -310,7 +310,7 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"conky", NULL,
+	/* "conky", NULL, */
 	"compton", "-i $HOME/.config/compton.conf", NULL,
 	"/usr/local/bin/battery-level", NULL,
 	"/opt/appimages/Nextcloud-3.0.1-x86_64.AppImage", NULL,
