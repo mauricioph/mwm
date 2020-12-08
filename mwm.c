@@ -304,17 +304,16 @@ static const char col_yellow[]      = "#ffff00"; /* Yelow to alert the user */
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm]	= { col_white, col_dcyan,  col_dcyan  },
-	[SchemeSel]		= { col_ldred, col_orange, col_dred },
+	[SchemeSel]	= { col_ldred, col_orange, col_dred },
 	[SchemeWarn]	= { col_black, col_yellow, col_red },
 	[SchemeUrgent]	= { col_white, col_red, col_red },
 };
 
 static const char *const autostart[] = {
-	/* "conky", NULL, */
-	"compton", "-i $HOME/.config/compton.conf", NULL,
+	"conky", NULL, 
+	"/usr/local/bin/picom", "-i $HOME/.config/compton.conf", NULL,
 	"/usr/local/bin/battery-level", NULL,
-	"/opt/appimages/Nextcloud-3.0.1-x86_64.AppImage", NULL,
-	"xautolock", "-time 5", "-locker", "/home/mauricio/.config/mwm/scripts/lock-fusy.sh", "-secure", "-detectsleep", NULL,
+	"/opt/appimages/Nextcloud-3.0.3-x86_64.AppImage", NULL,
 	"play", "/usr/share/sounds/Ps1 startup sound.flac", NULL,
 	NULL /* terminate */
 };
@@ -492,8 +491,8 @@ static Key keys[] = {
     { 0,              XF86XK_AudioRaiseVolume, spawn,          SHCMD("pactl set-sink-volume 0 +5%; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
     { 0,              XF86XK_AudioLowerVolume, spawn,          SHCMD("pactl set-sink-volume 0 -5%; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
     { 0,              XF86XK_AudioMute,        spawn,          SHCMD("pactl set-sink-volume 0 0; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
-    { 0,              XF86XK_MonBrightnessUp,  spawn,          SHCMD("sudo screen-backlight up") },
-    { 0,            XF86XK_MonBrightnessDown,  spawn,          SHCMD("sudo screen-backlight down") },
+    { MODKEY,              XK_F3,  spawn,          SHCMD("sudo /usr/local/bin/screen-backlight up") },
+    { MODKEY,            XK_F2,  spawn,          SHCMD("sudo /usr/local/bin/screen-backlight down") },
     { 0,              XF86XK_KbdBrightnessUp,  spawn,          SHCMD("sudo keyboard-backlight total") },
     { 0,            XF86XK_KbdBrightnessDown,  spawn,          SHCMD("sudo keyboard-backlight off") },
 	TAGKEYS(                        XK_1,                      0)
