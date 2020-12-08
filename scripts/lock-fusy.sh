@@ -1,29 +1,36 @@
-#!/bin/sh -e
+#!/bin/bash
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#  
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#  MA 02110-1301, USA.
+#  
 
-# mwm folder
+# Variables
 mwmfolder="$HOME/.config/mwm"
-# Icon
 icon="${mwmfolder}/icon.png"
-# Take a screenshot
-locker=$(mktemp /tmp/.lock.XXXXX.png)
-locked=$(basename ${locker})
-scrot ${mwmfolder}/${locked}
+unlocked="${mwmfolder}/unlocked.jpg"
+lockedone="${mwmfolder}/screen_locked1.png"
+locked="${mwmfolder}/screen_locked.png"
 
-if [ -f ${mwmfolder}/screen_locked.png ]
-then rm -f ${mwmfolder}/screen_locked.png
-fi
+# Take a screenshot and edit 
+scrot ${unlocked}
+convert ${unlocked} -blur 0x5 -swirl -360 ${lockedone}
+rm ${unlocked}
+convert ${lockedone}  "$icon" -gravity center -composite -font Helvetica -pointsize 32 -draw "gravity South fill black text 3,14 'Enter the password' fill blue  text 1,14 'Enter the password'" ${locked}
+rm ${lockedone}
 
-# Pixellate it 10x and write the enter the password phrase.
-convert -resize 10% ${mwmfolder}/${locked} ${mwmfolder}/screen_locked2.png
-convert -resize 1000% ${mwmfolder}/screen_locked2.png ${mwmfolder}/screen_locked3.png
-rm ${mwmfolder}/screen_locked2.png
-convert ${mwmfolder}/screen_locked3.png  "$icon" -gravity center -composite -font Helvetica -pointsize 32 -draw "gravity South fill black text 3,14 'Enter ${USER} password' fill blue  text 1,14 'Enter ${USER} password'" ${mwmfolder}/screen_locked.png
-
-rm ${mwmfolder}/screen_locked3.png
-rm ${mwmfolder}/${locked}
-rm ${locker}
 # Lock screen displaying this image.
-i3lock -i ${mwmfolder}/screen_locked.png
+i3lock -i ${locked}
 
 # Turn the screen off after a delay.
-sleep 300; pgrep mwmlock && xset dpms force off
+sleep 300; pgrep i3lock && xset dpms force off
