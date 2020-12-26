@@ -16,7 +16,7 @@
  * on each monitor. Each client contains a bit array to indicate the tags of a
  * client.
  *
- * Keys and tagging rules are organized as arrays and defined in config.h.
+ * Keys and tagging rules are organized as arrays and defined in config.h section.
  *
  * To understand everything else, start reading main().
  */
@@ -278,17 +278,17 @@ static Monitor *mons, *selmon;
 static Window root, wmcheckwin;
 
 /* configuration, allows nested code to access above variables
-#include "config.h"  */
+config.h  */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const int borderalpha	    = 0xbb;	/* border alpha for windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const int borderalpha	    = 0xcc;	/* border alpha for windows */
 static const unsigned int gappx     = 15;        /* gaps between windows */
 static const int onegap		    = 0;	/* 1: diff gappx if one client 0: no gap if one client  */
 static const unsigned int onegappx  = 100;	/* single window gap px */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int snap      = 64;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 static const int user_bh            = 25;        /* 0 means that mwm will calculate bar height, >= 1 means mwm will user_bh as bar height */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
@@ -314,7 +314,7 @@ static const char *const autostart[] = {
 	"/usr/local/bin/picom", "-i $HOME/.config/compton.conf", NULL,
 	"/usr/local/bin/battery-level", NULL,
 	"/opt/appimages/Nextcloud-3.0.3-x86_64.AppImage", NULL,
-	"play", "/usr/share/sounds/Ps1 startup sound.flac", NULL,
+	"play", "/usr/share/sounds/Ps1-startup.flac", NULL,
 	NULL /* terminate */
 };
 
