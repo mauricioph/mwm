@@ -290,7 +290,7 @@ static const unsigned int snap      = 64;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const int user_bh            = 25;        /* 0 means that mwm will calculate bar height, >= 1 means mwm will user_bh as bar height */
-static const char *fonts[]          = { "monospace:size=10" };
+static const char *fonts[]          = { "monospace:size=10", "awesomefont:size=12" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_orange[]       = "#c37306"; /* Bar colour */
 static const char col_dred[]       = "#353535"; /* Secondary Window Border colour */
@@ -437,7 +437,7 @@ static const char *termcmd[]  = { "uxterm", NULL };
 static const char *audioedtcmd[] = {"audacity", NULL };
 static const char *vlccmd[] = {"vlc", NULL };
 static const char *firefoxcmd[] = {"firefox", NULL };
-static const char *usbmcmd[] = {"gksudo", "/home/mauricio/.config/mwm/scripts/usb-mounter", NULL };
+static const char *usbmcmd[] = {"xterm", "-e", "/home/mauricio/.config/mwm/scripts/usb-mounter", NULL };
 static const char *poweroffcmd[] = {"python2", "/home/mauricio/.config/mwm/scripts/poweroff.py", NULL };
 static const char *lockcmd[] = {"bash","/home/mauricio/.config/mwm/scripts/lock-fusy.sh", NULL };
 /* static const char *connectnetcmd[] = {"nmcli", "c", "up", "3ce41249-a574-4e46-815e-e49cc01dcc6f", NULL }; */
