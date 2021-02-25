@@ -281,17 +281,17 @@ static Window root, wmcheckwin;
 config.h  */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 5;        /* border pixel of windows */
 static const int borderalpha	    = 0xcc;	/* border alpha for windows */
 static const unsigned int gappx     = 15;        /* gaps between windows */
-static const int onegap		    = 0;	/* 1: diff gappx if one client 0: no gap if one client  */
-static const unsigned int onegappx  = 100;	/* single window gap px */
+static const int onegap		    = 1;	/* 1: diff gappx if one client 0: no gap if one client  */
+static const unsigned int onegappx  = 10;	/* single window gap px */
 static const unsigned int snap      = 64;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const int user_bh            = 25;        /* 0 means that mwm will calculate bar height, >= 1 means mwm will user_bh as bar height */
-static const char *fonts[]          = { "monospace:size=10", "awesomefont:size=12" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "Dejavu Serif:size=10", "awesomefont:size=12" };
+static const char dmenufont[]       = "Dejavu Serif:size=10";
 static const char col_orange[]       = "#c37306"; /* Bar colour */
 static const char col_dred[]       = "#353535"; /* Secondary Window Border colour */
 static const char col_ldred[]       = "#232629"; /* All text colour */
@@ -313,8 +313,12 @@ static const char *const autostart[] = {
 	"conky", NULL, 
 	"/usr/local/bin/picom", "-i $HOME/.config/compton.conf", NULL,
 	"/usr/local/bin/battery-level", NULL,
-	"/opt/appimages/Nextcloud-3.0.3-x86_64.AppImage", NULL,
+	"/opt/appimages/Nextcloud.AppImage", NULL,
 	"play", "/usr/share/sounds/Ps1-startup.flac", NULL,
+	"/usr/local/bin/gwallpaper.sh", "60", NULL,
+	"/usr/bin/setxkbmap", "gb", NULL,
+	"$HOME/.config/wmw/scripts/ligamento", NULL,
+	"/usr/bin/nofity-send", "Started all programs", NULL,
 	NULL /* terminate */
 };
 
