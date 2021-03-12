@@ -313,7 +313,7 @@ static const char *const autostart[] = {
 	"conky", NULL, 
 	"/usr/local/bin/picom", "-i $HOME/.config/compton.conf", NULL,
 	"/usr/local/bin/battery-level", NULL,
-	"/opt/appimages/Nextcloud.AppImage", NULL,
+	"$HOME/Applications/Nextcloud.AppImage", NULL,
 	"play", "/usr/share/sounds/Ps1-startup.flac", NULL,
 	"/usr/local/bin/gwallpaper.sh", "60", NULL,
 	"/usr/bin/setxkbmap", "gb", NULL,
