@@ -8,7 +8,8 @@
 # 	keyboard-backlight {up,down,total,off}
 #
 # :authors: Jess Frazelle, @jessfraz
-# :date: 8 June 2015
+# :contrib: Mauricio Medeiros
+# :date: 13 May 2021
 # :version: 0.0.1
 ##############################################################################
 set -e
