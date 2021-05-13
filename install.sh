@@ -4,32 +4,30 @@ casa="$HOME/.config/mwm/"
 
 [[ ! -d ${casa} ]] || mkdir "${casa}"
 cp -rf scripts/ "${casa}"
-find ${casa}scripts/ -type f -exec chmod +x "{}" \;
+chmod +x "${casa}scripts/"
 
-[[ ! -d ${HOME}/.local/bin ]] && mkdir -p ${HOME}/.local/bin/
-export PATH=$PATH:$HOME/.local/bin/
+[[ ! -d ${HOME}/Applications ]] && mkdir -p ${HOME}/Applications
+export PATH=$PATH:$HOME/Applications/
 
 for i in ${casa}scripts/*
-do ln -s ${i} $HOME/.local/bin/
+do ln -s ${i} $HOME/Applications/
 done
 
-echo "Installing mwm, to control backlight and keyboard lights, please make sure to enable the sudo to run the scripts without password for more straight forward workflow"
+echo -e "Installing mwm, to control backlight and keyboard lights. \nPlease make sure to enable the sudo to run the scripts without password for more straight forward workflow. \nIf your user ${USER} does not have access to sudo please ask an admin to make and install the mwm."
 sleep 5
-sudo cp scripts/usb-mounter scripts/screen-backlight scripts/keyboard-backlight /usr/local/bin
-sudo chmod +x /usr/local/bin/*backlight
-sudo chmod +x /usr/local/bin/usb-mounter
+# sudo cp scripts/usb-mounter scripts/screen-backlight scripts/keyboard-backlight /usr/local/bin
+# sudo chmod +x /usr/local/bin/*backlight
+# sudo chmod +x /usr/local/bin/usb-mounter
 sudo cp mwm.desktop /usr/share/xsessions/
 sudo make
 sudo make clean install
 sleep 5
 
 clear
-echo "Add these lines to your sudoers file, replace user to your user or group
-user ALL= (root) NOPASSWD: /usr/local/bin/screen-backlight
-user ALL= (root) NOPASSWD: /usr/local/bin/keyboard-backlight
-user ALL= (root) NOPASSWD: /usr/local/bin/usb-mounter"
+echo -e "Add these lines to your sudoers file, replace user to your user or group. \n $USER ALL= (root) NOPASSWD: /usr/local/bin/screen-backlight \n $USER ALL= (root) NOPASSWD: /usr/local/bin/keyboard-backlight \n $USER ALL= (root) NOPASSWD: /usr/local/bin/usb-mounter \n" 
 echo "Also make sure that the path exist for these files"
-echo "/sys/class/backlight/*/brightness The * is the driver for your screen hardware"
-echo "/sys/class/leds/smc::kdb_backlight/brightness is the file for your keyboard"
-echo "If these files does not exist than ignore these instructions"
+
+for i in /sys/class/backlight/*;do [ -f "${i}/brightness" ] && echo "${i}/brightness The * is the driver for your screen hardware";done
+for i in /sys/class/leds/*;do a=$(echo "${i}" | awk '/kbd/ {print $1}');[ -f "${a}/brightness" ] && echo "${i}/brightness is your keyboard brightness.";done
+
 

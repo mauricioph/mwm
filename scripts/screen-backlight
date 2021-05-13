@@ -14,9 +14,9 @@
 set -e
 set -o pipefail
 
-BACKLIGHT=$(cat /sys/class/backlight/intel_backlight/brightness)
+BACKLIGHT=$(for i in /sys/class/backlight/*;do cat "${i}/brightness";done)
 INCREMENT=15
-LIGHTFILE=/sys/class/backlight/intel_backlight/brightness
+LIGHTFILE=$(for i in /sys/class/backlight/*;do echo "${i}/brightness";done)
 
 if [ $UID -ne 0 ]; then
 	echo "Please run this program as superuser"

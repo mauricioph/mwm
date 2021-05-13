@@ -290,22 +290,22 @@ static const unsigned int snap      = 64;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const int user_bh            = 25;        /* 0 means that mwm will calculate bar height, >= 1 means mwm will user_bh as bar height */
-static const char *fonts[]          = { "Dejavu Serif:size=10", "awesomefont:size=12" };
-static const char dmenufont[]       = "Dejavu Serif:size=10";
-static const char col_orange[]       = "#c37306"; /* Bar colour */
-static const char col_dred[]       = "#353535"; /* Secondary Window Border colour */
-static const char col_ldred[]       = "#232629"; /* All text colour */
-static const char col_white[]       = "#FFFFFF"; /* Text colour of Selection */
-static const char col_dcyan[]        = "#1d4664"; /* Main Background Colour Of selection */
+static const char *fonts[]          = { "SourceCodePro Bold:size=12", "awesomefont:size=12" };
+static const char dmenufont[]       = "SourceCodePro Bold:size=12";
+static const char col_orange[]       = "#df740f"; /* Orange */
+static const char col_bblue[]       = "#6fc3df"; /* Bright Blue */
+static const char col_byellow[]       = "#ffe64d"; /* Bright Yellow */
+static const char col_white[]       = "#e6ffff"; /* Whittish */
+static const char col_dcyan[]        = "#0c141f"; /* Dark Cyan */
 static const char col_black[]       = "#000000"; /* Black */
 static const char col_red[]         = "#ff0000"; /* Red for Urgency */
 static const char col_yellow[]      = "#ffff00"; /* Yelow to alert the user */
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm]	= { col_white, col_dcyan,  col_dcyan  },
-	[SchemeSel]	= { col_ldred, col_orange, col_dred },
-	[SchemeWarn]	= { col_black, col_yellow, col_red },
+	[SchemeNorm]	= { col_bblue, col_dcyan,  col_bblue  },
+	[SchemeSel]	= { col_black, col_orange, col_orange },
+	[SchemeWarn]	= { col_byellow, col_red, col_yellow },
 	[SchemeUrgent]	= { col_white, col_red, col_red },
 };
 
@@ -437,7 +437,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "rofi", "-show", "run", "-width 20" , NULL };
-static const char *termcmd[]  = { "uxterm", NULL };
+static const char *termcmd[]  = { "lxterminal", NULL };
 static const char *audioedtcmd[] = {"audacity", NULL };
 static const char *vlccmd[] = {"vlc", NULL };
 static const char *firefoxcmd[] = {"firefox", NULL };
