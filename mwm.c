@@ -1,6 +1,6 @@
 /* See LICENSE file for copyright and license details.
  *
- * dynamic window manager is designed like any other X client as well. It is
+ * Maurice window manager is designed like any other X client as well. It is
  * driven through handling X events. In contrast to other X clients, a window
  * manager selects for SubstructureRedirectMask on the root window, to receive
  * events about window (dis-)appearance. Only one X connection at a time is
@@ -40,7 +40,6 @@
 #include <X11/extensions/Xinerama.h>
 #endif /* XINERAMA */
 #include <X11/Xft/Xft.h>
-
 #include "drw.h"
 #include "util.h"
 
@@ -310,19 +309,23 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"conky", NULL, 
-	"/usr/local/bin/picom", "-i $HOME/.config/compton.conf", NULL,
+	"/usr/bin/picom", "--experimental-backends --config $HOME/.config/picom.conf", NULL, 
 	"/usr/local/bin/battery-level", NULL,
-	"$HOME/Applications/Nextcloud.AppImage", NULL,
 	"play", "/usr/share/sounds/Ps1-startup.flac", NULL,
 	"/usr/local/bin/gwallpaper.sh", "60", NULL,
 	"/usr/bin/setxkbmap", "gb", NULL,
-	"$HOME/.config/wmw/scripts/ligamento", NULL,
+	"$HOME/.config/mwm/scripts/ligamento", NULL,
 	"/usr/bin/nofity-send", "Started all programs", NULL,
 	NULL /* terminate */
 };
 
-
+// Dependancies:
+// sox
+// gwallpaper
+// dusnt
+// ytfzf
+// fzf
+// dmenu
 
 /* tagging */
 static const char *tags[] = { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
@@ -334,6 +337,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "mixxx",    NULL,	  NULL,	      4,            1,           -1 },
 	{ "Blender",  NULL,       NULL,       0,            1,           -1 }, 
 };
 
@@ -437,13 +441,14 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "rofi", "-show", "run", "-width 20" , NULL };
-static const char *termcmd[]  = { "lxterminal", NULL };
+static const char *termcmd[]  = { "terminator", NULL };
 static const char *audioedtcmd[] = {"audacity", NULL };
 static const char *vlccmd[] = {"vlc", NULL };
 static const char *firefoxcmd[] = {"firefox", NULL };
-static const char *usbmcmd[] = {"xterm", "-e", "/home/mauricio/.config/mwm/scripts/usb-mounter", NULL };
-static const char *poweroffcmd[] = {"python2", "/home/mauricio/.config/mwm/scripts/poweroff.py", NULL };
+static const char *usbmcmd[] = {"terminator", "-e", "/home/mauricio/.config/mwm/scripts/usb-mounter", NULL };
+static const char *poweroffcmd[] = {"bash", "/home/mauricio/.config/mwm/scripts/poweroff.sh", NULL };
 static const char *lockcmd[] = {"bash","/home/mauricio/.config/mwm/scripts/lock-fusy.sh", NULL };
+static const char *ytfzfind[] = {"bash","/usr/local/bin/ytfzf -D", NULL};
 /* static const char *connectnetcmd[] = {"nmcli", "c", "up", "3ce41249-a574-4e46-815e-e49cc01dcc6f", NULL }; */
 
 #include <X11/XF86keysym.h>
@@ -461,6 +466,7 @@ static Key keys[] = {
    	{ MODKEY,                       XK_a,      spawn,          {.v = audioedtcmd }},    /* Audio Editor */
    	{ MODKEY,                       XK_v,      spawn,          {.v = vlccmd }},         /* VLC Media Player */
    	{ MODKEY,                       XK_g,      spawn,          {.v = usbmcmd }},        /* usb mounter */
+   	{ MODKEY,                       XK_y,      spawn,          {.v = ytfzfind }},        /* Youtube player */
    	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefoxcmd }},     /* Firefox */
    	{ MODKEY,                       XK_e,      spawn,          {.v = poweroffcmd }},    /* Power off */
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = lockcmd }},        /* Lock screen */
