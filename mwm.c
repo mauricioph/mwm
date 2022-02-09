@@ -309,7 +309,7 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"/usr/bin/picom", "--experimental-backends --config $HOME/.config/picom.conf", NULL, 
+	"/usr/bin/picom", "--experimental-backend --config $HOME/.config/picom.conf", NULL, 
 	"/usr/local/bin/battery-level", NULL,
 	"play", "/usr/share/sounds/Ps1-startup.flac", NULL,
 	"/usr/local/bin/gwallpaper.sh", "60", NULL,
