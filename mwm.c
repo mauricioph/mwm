@@ -313,9 +313,10 @@ static const char *const autostart[] = {
 	"play", "/usr/share/sounds/Ps1-startup.flac", NULL,
 	"/usr/local/bin/gwallpaper.sh", "60", NULL,
 	"/usr/bin/setxkbmap", "gb", NULL,
-	"/home/mauricio/.config/mwm/scripts/ligamento", NULL,
+	"bash", "${HOME}/.config/mwm/scripts/ligamento", NULL,
 	"/usr/bin/nofity-send", "Started all programs", NULL,
 	"/usr/local/bin/picom", "--experimental-backend", "--config", "/home/mauricio/.config/picom.conf", NULL,
+	"bash", "${HOME}/.config/mwm/autostart.sh", NULL,
 	NULL /* terminate */
 };
 
