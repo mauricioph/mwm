@@ -19,6 +19,6 @@ case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
 	up) wifiicon="$(awk '/^\s*w/ { print "📶", int($3 * 100 / 70) "% " }' /proc/net/wireless)" ;;
 esac
 
-ipa=$(ip a | awk '/192/ {print $2}' | cut -d "/" -f 1 | xargs)
+ipa=$(ip a | awk '/192/ {print $2}' | cut -d "/" -f 1 | xargs | sed 's/\ /\ |\ /g')
 
 printf "%s | %s%s\n" "$ipa" "$wifiicon" "$(sed "s/down/❎/;s/up/🌐/" /sys/class/net/e*/operstate 2>/dev/null)"
