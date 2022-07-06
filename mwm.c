@@ -472,7 +472,7 @@ static Key keys[] = {
    	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefoxcmd }},     /* Firefox */
    	{ MODKEY,                       XK_e,      spawn,          {.v = poweroffcmd }},    /* Power off */
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = lockcmd }},        /* Lock screen */
-	{ MODKEY|ShiftMask,		XK_s,	   spawn,	   {.v = screenshotcmd }}, /* Screenshot */
+	{ MODKEY,			XK_Print,  spawn,	   {.v = screenshotcmd }}, /* Screenshot */
 	{ MODKEY,			XK_n,	   spawn,	   {.v = connectnetcmd }},  /* Connect wifi to flat */
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
