@@ -313,7 +313,7 @@ static const char *const autostart[] = {
 	"/usr/local/bin/battery-level", NULL,
 	// "$HOME/Applications/Nextcloud.AppImage", NULL,
 	"play", "/usr/share/sounds/Ps1-startup.flac", NULL,
-	"/usr/local/bin/gwallpaper", "60", NULL,
+	"/usr/local/bin/wallip.py", NULL,
 	"/usr/bin/setxkbmap", "gb", NULL,
 	"$HOME/.config/wmw/scripts/ligamento", NULL,
 	"/usr/bin/nofity-send", "Started all programs", NULL,
