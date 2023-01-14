@@ -309,7 +309,7 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	// "/usr/bin/picom", "--experimental-backends --config $HOME/.config/picom.conf", NULL, 
+	"/usr/bin/picom", "--experimental-backends --config $HOME/.config/picom.conf", NULL, 
 	"/usr/local/bin/battery-level", NULL,
 	// "$HOME/Applications/Nextcloud.AppImage", NULL,
 	"play", "/usr/share/sounds/Ps1-startup.flac", NULL,
@@ -449,7 +449,8 @@ static const char *firefoxcmd[] = {"firefox", NULL };
 // static const char *usbmcmd[] = {"xterm", "-e", "/home/mauricio/.config/mwm/scripts/usb-mounter", NULL };
 static const char *poweroffcmd[] = {"bash", "/home/mauricio/.config/mwm/scripts/poweroff.sh", NULL };
 static const char *lockcmd[] = {"bash","/home/mauricio/.config/mwm/scripts/lock-fusy.sh", NULL };
-static const char *ytfzfind[] = {"bash","/usr/local/bin/ytfzf -D", NULL};
+static const char *ytfzfind[] = {"/opt/repositories/ytfzf/ytfzf","-D", NULL};
+static const char *bookmark[] = {"/home/mauricio/.local/bin/callb.sh", NULL};
 /* static const char *connectnetcmd[] = {"nmcli", "c", "up", "3ce41249-a574-4e46-815e-e49cc01dcc6f", NULL }; */
 
 #include <X11/XF86keysym.h>
@@ -495,17 +496,18 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-    { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
+        { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
  	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
  	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
-	{ MODKEY,		            	XK_c,	   spawn, 	       SHCMD("mpv --no-cache --no-osc --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
-    { 0,              XF86XK_AudioRaiseVolume, spawn,          SHCMD("pactl set-sink-volume 0 +5%; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
-    { 0,              XF86XK_AudioLowerVolume, spawn,          SHCMD("pactl set-sink-volume 0 -5%; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
-    { 0,              XF86XK_AudioMute,        spawn,          SHCMD("pactl set-sink-volume 0 0; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
-    { MODKEY,              XK_F3,  spawn,          SHCMD("sudo /usr/local/bin/screen-backlight up") },
-    { MODKEY,            XK_F2,  spawn,          SHCMD("sudo /usr/local/bin/screen-backlight down") },
-    { 0,              XF86XK_KbdBrightnessUp,  spawn,          SHCMD("sudo keyboard-backlight total") },
-    { 0,            XF86XK_KbdBrightnessDown,  spawn,          SHCMD("sudo keyboard-backlight off") },
+	{ MODKEY,		        XK_c,	   spawn,          SHCMD("mpv --no-cache --no-osc --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
+	{ MODKEY|ShiftMask,		XK_b,	   spawn,          {.v = bookmark }}, /* Call bookmarks */
+        { 0,              XF86XK_AudioRaiseVolume, spawn,          SHCMD("pactl set-sink-volume 0 +5%; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
+        { 0,              XF86XK_AudioLowerVolume, spawn,          SHCMD("pactl set-sink-volume 0 -5%; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
+        { 0,              XF86XK_AudioMute,        spawn,          SHCMD("pactl set-sink-volume 0 0; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
+        { MODKEY,                       XK_F3,     spawn,          SHCMD("sudo /usr/local/bin/screen-backlight up") },
+        { MODKEY,                       XK_F2,     spawn,          SHCMD("sudo /usr/local/bin/screen-backlight down") },
+        { 0,              XF86XK_KbdBrightnessUp,  spawn,          SHCMD("sudo keyboard-backlight total") },
+        { 0,            XF86XK_KbdBrightnessDown,  spawn,          SHCMD("sudo keyboard-backlight off") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
