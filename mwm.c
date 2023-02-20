@@ -287,7 +287,7 @@ static const int onegap		    = 1;	/* 1: diff gappx if one client 0: no gap if on
 static const unsigned int onegappx  = 10;	/* single window gap px */
 static const unsigned int snap      = 64;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 static const int user_bh            = 25;        /* 0 means that mwm will calculate bar height, >= 1 means mwm will user_bh as bar height */
 static const char *fonts[]          = { "SourceCodePro Bold:size=12", "awesomefont:size=12" };
 static const char dmenufont[]       = "SourceCodePro Bold:size=12";
