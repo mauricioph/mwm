@@ -280,14 +280,14 @@ static Window root, wmcheckwin;
 config.h  */
 
 /* appearance */
-static const unsigned int borderpx  = 5;        /* border pixel of windows */
+static const unsigned int borderpx  = 6;        /* border pixel of windows */
 static const int borderalpha	    = 0xcc;	/* border alpha for windows */
 static const unsigned int gappx     = 20;        /* gaps between windows */
 static const int onegap		    = 1;	/* 1: diff gappx if one client 0: no gap if one client  */
 static const unsigned int onegappx  = 10;	/* single window gap px */
 static const unsigned int snap      = 64;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
+static const int topbar             = 1;        /* 0 means bottom bar */
 static const int user_bh            = 25;        /* 0 means that mwm will calculate bar height, >= 1 means mwm will user_bh as bar height */
 static const char *fonts[]          = { "SourceCodePro Bold:size=12", "awesomefont:size=12" };
 static const char dmenufont[]       = "SourceCodePro Bold:size=12";
@@ -309,12 +309,27 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
+<<<<<<< HEAD
 	"mpv", "-fs", "/usr/share/sounds/Ps1-startup.mp4", NULL,
+=======
+	"/usr/local/bin/battery-level", NULL,
+	"play", "/usr/share/sounds/Ps1-startup.flac", NULL,
+	"/usr/local/bin/gwallpaper.sh", "60", NULL,
+	"/usr/bin/setxkbmap", "gb", NULL,
+	"bash", "/home/mauricio/.config/mwm/scripts/ligamento", NULL,
+	"/usr/bin/nofity-send", "Started all programs", NULL,
+	"/usr/local/bin/picom", "--experimental-backend", "--config", "/home/mauricio/.config/picom.conf", NULL,
+	"bash", "/home/mauricio/.config/mwm/autostart.sh", NULL,
+>>>>>>> 0ffbb94564961190d36966d116f8463d9deaeb5c
 	NULL /* terminate */
 };
 
 // Dependancies:
 // sox
+<<<<<<< HEAD
+=======
+// gwallpaper
+>>>>>>> 0ffbb94564961190d36966d116f8463d9deaeb5c
 // dusnt
 // ytfzf
 // fzf
@@ -437,15 +452,12 @@ static const char *dmenucmd[] = { "rofi", "-show", "run", "-width 20" , NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *audioedtcmd[] = {"audacity", NULL };
 static const char *vlccmd[] = {"vlc", NULL };
-static const char *firefoxcmd[] = {"firefox", NULL };
-// static const char *usbmcmd[] = {"xterm", "-e", "/home/mauricio/.config/mwm/scripts/usb-mounter", NULL };
 static const char *poweroffcmd[] = {"bash", "/home/mauricio/.config/mwm/scripts/poweroff.sh", NULL };
 static const char *lockcmd[] = {"bash","/home/mauricio/.config/mwm/scripts/lock-fusy.sh", NULL };
 static const char *ytfzfind[] = {"/opt/repositories/ytfzf/ytfzf","-D", NULL};
-static const char *bookmark[] = {"/home/mauricio/.local/bin/callb.sh", NULL};
-/* static const char *connectnetcmd[] = {"nmcli", "c", "up", "3ce41249-a574-4e46-815e-e49cc01dcc6f", NULL }; */
-
-#include <X11/XF86keysym.h>
+static const char *bookmarkcmd[] = {"/home/mauricio/.local/bin/callb.sh", NULL};
+static const char *firefoxcmd[] = {"librewolf", NULL };
+static const char *screenshotcmd[] = {"bash", "/usr/local/bin/sss", NULL};
 
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 static char *statuscmds[] = { "notify-send Mouse$BUTTON" };
@@ -459,12 +471,12 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },        /* st Terminal */
    	{ MODKEY,                       XK_a,      spawn,          {.v = audioedtcmd }},    /* Audio Editor */
    	{ MODKEY,                       XK_v,      spawn,          {.v = vlccmd }},         /* VLC Media Player */
-//   	{ MODKEY,                       XK_g,      spawn,          {.v = usbmcmd }},        /* usb mounter */
-   	{ MODKEY,                       XK_y,      spawn,          {.v = ytfzfind }},        /* Youtube player */
+  	{ MODKEY,                       XK_y,      spawn,          {.v = ytfzfind }},        /* Youtube player */
    	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefoxcmd }},     /* Firefox */
    	{ MODKEY,                       XK_e,      spawn,          {.v = poweroffcmd }},    /* Power off */
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = lockcmd }},        /* Lock screen */
-	/*{ MODKEY,			XK_n,	   spawn,	   {.v = connectnetcmd }},  Connect wifi to flat */
+	{ MODKEY,			XK_Print,  spawn,	   {.v = screenshotcmd }}, /* Screenshot */
+	{ MODKEY|ShiftMask,		XK_b,	   spawn,	   {.v = bookmarkcmd }},  /* Load bookmarked */
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -491,8 +503,7 @@ static Key keys[] = {
         { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
  	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
  	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
-	{ MODKEY,		        XK_c,	   spawn,          SHCMD("mpv --no-cache --no-osc --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
-	{ MODKEY|ShiftMask,		XK_b,	   spawn,          {.v = bookmark }}, /* Call bookmarks */
+        { MODKEY,		        XK_c,	   spawn,          SHCMD("mpv --no-cache --no-osc --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
         { 0,              XF86XK_AudioRaiseVolume, spawn,          SHCMD("pactl set-sink-volume 0 +5%; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
         { 0,              XF86XK_AudioLowerVolume, spawn,          SHCMD("pactl set-sink-volume 0 -5%; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
         { 0,              XF86XK_AudioMute,        spawn,          SHCMD("pactl set-sink-volume 0 0; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
@@ -500,7 +511,7 @@ static Key keys[] = {
         { MODKEY,                       XK_F2,     spawn,          SHCMD("sudo /usr/local/bin/screen-backlight down") },
         { 0,              XF86XK_KbdBrightnessUp,  spawn,          SHCMD("sudo keyboard-backlight total") },
         { 0,            XF86XK_KbdBrightnessDown,  spawn,          SHCMD("sudo keyboard-backlight off") },
-	TAGKEYS(                        XK_1,                      0)
+        TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)

@@ -1,5 +1,9 @@
 # mwm version
+<<<<<<< HEAD
 VERSION = 1.06
+=======
+VERSION = 1.0
+>>>>>>> 0ffbb94564961190d36966d116f8463d9deaeb5c
 
 # Customize below to fit your system
 
