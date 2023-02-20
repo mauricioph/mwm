@@ -309,27 +309,12 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-<<<<<<< HEAD
-	"mpv", "-fs", "/usr/share/sounds/Ps1-startup.mp4", NULL,
-=======
-	"/usr/local/bin/battery-level", NULL,
-	"play", "/usr/share/sounds/Ps1-startup.flac", NULL,
-	"/usr/local/bin/gwallpaper.sh", "60", NULL,
-	"/usr/bin/setxkbmap", "gb", NULL,
-	"bash", "/home/mauricio/.config/mwm/scripts/ligamento", NULL,
-	"/usr/bin/nofity-send", "Started all programs", NULL,
-	"/usr/local/bin/picom", "--experimental-backend", "--config", "/home/mauricio/.config/picom.conf", NULL,
-	"bash", "/home/mauricio/.config/mwm/autostart.sh", NULL,
->>>>>>> 0ffbb94564961190d36966d116f8463d9deaeb5c
-	NULL /* terminate */
+"mpv", "-fs", "/usr/share/sounds/Ps1-startup.mp4", NULL,
+NULL /* terminate */
 };
 
 // Dependancies:
 // sox
-<<<<<<< HEAD
-=======
-// gwallpaper
->>>>>>> 0ffbb94564961190d36966d116f8463d9deaeb5c
 // dusnt
 // ytfzf
 // fzf
