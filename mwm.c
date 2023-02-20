@@ -330,8 +330,9 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "mixxx",    NULL,	  NULL,	      4,            1,           -1 },
 	{ "Blender",  NULL,       NULL,       0,            1,           -1 }, 
+	{ "mkvtoolnix-gui",    NULL,	  NULL,	      4,            1,           -1 },
+	{ "mixxx",    NULL,	  NULL,	      4,            1,           -1 },
 };
 
 /* layout(s) */
@@ -489,13 +490,6 @@ static Key keys[] = {
  	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
  	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
         { MODKEY,		        XK_c,	   spawn,          SHCMD("mpv --no-cache --no-osc --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
-        { 0,              XF86XK_AudioRaiseVolume, spawn,          SHCMD("pactl set-sink-volume 0 +5%; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
-        { 0,              XF86XK_AudioLowerVolume, spawn,          SHCMD("pactl set-sink-volume 0 -5%; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
-        { 0,              XF86XK_AudioMute,        spawn,          SHCMD("pactl set-sink-volume 0 0; kill $(ps axo pid,cmd | grep 'sleep 1m' | sed -n 1p | awk '{print $1}')") },
-        { MODKEY,                       XK_F3,     spawn,          SHCMD("sudo /usr/local/bin/screen-backlight up") },
-        { MODKEY,                       XK_F2,     spawn,          SHCMD("sudo /usr/local/bin/screen-backlight down") },
-        { 0,              XF86XK_KbdBrightnessUp,  spawn,          SHCMD("sudo keyboard-backlight total") },
-        { 0,            XF86XK_KbdBrightnessDown,  spawn,          SHCMD("sudo keyboard-backlight off") },
         TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
