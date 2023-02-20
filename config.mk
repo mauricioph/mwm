@@ -1,5 +1,5 @@
 # mwm version
-VERSION = 0.3
+VERSION = 1.06
 
 # Customize below to fit your system
 

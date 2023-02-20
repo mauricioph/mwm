@@ -282,7 +282,7 @@ config.h  */
 /* appearance */
 static const unsigned int borderpx  = 5;        /* border pixel of windows */
 static const int borderalpha	    = 0xcc;	/* border alpha for windows */
-static const unsigned int gappx     = 15;        /* gaps between windows */
+static const unsigned int gappx     = 20;        /* gaps between windows */
 static const int onegap		    = 1;	/* 1: diff gappx if one client 0: no gap if one client  */
 static const unsigned int onegappx  = 10;	/* single window gap px */
 static const unsigned int snap      = 64;       /* snap pixel */
@@ -309,20 +309,12 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"/usr/bin/picom", "--experimental-backends --config $HOME/.config/picom.conf", NULL, 
-	"/usr/local/bin/battery-level", NULL,
-	// "$HOME/Applications/Nextcloud.AppImage", NULL,
-	"play", "/usr/share/sounds/Ps1-startup.flac", NULL,
-	"/usr/local/bin/wallip.py", NULL,
-	"/usr/bin/setxkbmap", "gb", NULL,
-	"$HOME/.config/wmw/scripts/ligamento", NULL,
-	"/usr/bin/nofity-send", "Started all programs", NULL,
+	"mpv", "-fs", "/usr/share/sounds/Ps1-startup.mp4", NULL,
 	NULL /* terminate */
 };
 
 // Dependancies:
 // sox
-// gwallpaper
 // dusnt
 // ytfzf
 // fzf
@@ -442,7 +434,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "rofi", "-show", "run", "-width 20" , NULL };
-static const char *termcmd[]  = { "lxterminal", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 static const char *audioedtcmd[] = {"audacity", NULL };
 static const char *vlccmd[] = {"vlc", NULL };
 static const char *firefoxcmd[] = {"firefox", NULL };
