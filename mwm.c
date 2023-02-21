@@ -31,7 +31,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <X11/cursorfont.h>
-#include <X11/keysym.h>
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
 #include <X11/Xproto.h>
@@ -40,8 +39,10 @@
 #include <X11/extensions/Xinerama.h>
 #endif /* XINERAMA */
 #include <X11/Xft/Xft.h>
-#include "drw.h"
+#include <X11/keysym.h>
 #include "util.h"
+#include "drw.h"
+#include "keys.h"
 
 /* macros */
 #define BUTTONMASK              (ButtonPressMask|ButtonReleaseMask)
@@ -444,7 +445,11 @@ static const char *ytfzfind[] = {"/opt/repositories/ytfzf/ytfzf","-D", NULL};
 static const char *bookmarkcmd[] = {"/home/mauricio/.local/bin/callb.sh", NULL};
 static const char *firefoxcmd[] = {"librewolf", NULL };
 static const char *screenshotcmd[] = {"bash", "/usr/local/bin/sss", NULL};
-
+static const char *raisevol[] = {"/usr/bin/pactl", "set-sink-volume", "0", "+10%", NULL};
+static const char *lowervol[] = {"/usr/bin/pactl", "set-sink-volume", "0", "-10%", NULL};
+static const char *muteaud[] = {"/usr/bin/pactl", "set-sink-mute", "0", "toggle", NULL};
+static const char *monbrgdw[] = {"/usr/bin/brightnessctl", "s", "10-", NULL};
+static const char *monbrgup[] = {"/usr/bin/brightnessctl", "s", "+10", NULL};
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 static char *statuscmds[] = { "notify-send Mouse$BUTTON" };
 static char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
@@ -461,7 +466,7 @@ static Key keys[] = {
    	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefoxcmd }},     /* Firefox */
    	{ MODKEY,                       XK_e,      spawn,          {.v = poweroffcmd }},    /* Power off */
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = lockcmd }},        /* Lock screen */
-	{ MODKEY,			XK_Print,  spawn,	   {.v = screenshotcmd }}, /* Screenshot */
+	{ MODKEY,			XF86XK_LaunchA,  spawn,	   {.v = screenshotcmd }}, /* Screenshot */
 	{ MODKEY|ShiftMask,		XK_b,	   spawn,	   {.v = bookmarkcmd }},  /* Load bookmarked */
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -489,8 +494,33 @@ static Key keys[] = {
         { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
  	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
  	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
-        { MODKEY,		        XK_c,	   spawn,          SHCMD("mpv --no-cache --no-osc --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
         TAGKEYS(                        XK_1,                      0)
+        { MODKEY,		        XK_c,	   spawn,          SHCMD("mpv --no-cache --no-osc --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
+        { MODKEY,		        XF86XK_MonBrightnessDown,   spawn,       {.v = monbrgdw},
+        { MODKEY,		        XF86XK_MonBrightnessUp,   spawn,         {.v = monbrgup}},
+        { MODKEY,		        XF86XK_KbdBrightnessDown,   spawn,       {.v = monbrgdw},
+        { MODKEY,		        XF86XK_KbdBrightnessUp,   spawn,         {.v = monbrgup},
+        { MODKEY,		        XF86XK_AudioMute,   spawn,               {.v = muteaud}},
+        { MODKEY,		        XF86XK_AudioLowerVolume,   spawn,        {.v = lowervol}}, /* Lower audio */
+        { MODKEY,		        XF86XK_AudioRaiseVolume,   spawn,        {.v = raisevol}}, /* Raise audio */
+
+	/*
+	 keycode 9 = keysym 0xff1b = Escape
+	 keycode 232 = keysym 0x1008ff03 = XF86XK_MonBrightnessDown
+	 keycode 233 = keysym 0x1008ff02 = XF86XK_MonBrightnessUp
+	 keycode 128 = keysym 0x1008ff4a = XF86XK_LaunchA
+	 keycode 212 = keysym 0x1008ff4b = XF86XK_LaunchB
+	 keycode 237 = keysym 0x1008ff06 = XF86XK_KbdBrightnessDown
+	 keycode 238 = keysym 0x1008ff05 = XF86XK_KbdBrightnessUp
+	 keycode 173 = keysym 0x1008ff16 = XF86XK_AudioPrev
+	 keycode 172 = keysym 0x1008ff14 = XF86XK_AudioPlay
+	 keycode 171 = keysym 0x1008ff17 = XF86XK_AudioNext
+	 keycode 121 = keysym 0x1008ff12 = XF86XK_AudioMute
+	 keycode 122 = keysym 0x1008ff11 = XF86XK_AudioLowerVolume
+	 keycode 123 = keysym 0x1008ff13 = XF86XK_AudioRaiseVolume
+	 keycode 169 = keysym 0x1008ff2c = XF86XK_Eject
+	 *
+	 */
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
