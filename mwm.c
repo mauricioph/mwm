@@ -293,7 +293,7 @@ static const int user_bh            = 25;        /* 0 means that mwm will calcul
 static const char *fonts[]          = { "SourceCodePro Bold:size=12", "awesomefont:size=12" };
 static const char dmenufont[]       = "SourceCodePro Bold:size=12";
 
-#include "themes/colors-wal-dwm.h"
+#include "themes/theme.h"
 /* colours loaded from themes folder 
 static const char *colors[][3]      = {
 //               fg         bg         border 

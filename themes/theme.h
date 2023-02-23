@@ -1,11 +1,11 @@
 /* Orignal theme of MWM */
-static const char norm_fg[]       = "#df740f"; /* Orange */
-static const char norm_bg[]       = "#6fc3df"; /* Bright Blue */
-static const char norm_border[]       = "#ffe64d"; /* Bright Yellow */
+static const char norm_fg[]       = "#6fc3df"; /* Text Norm */
+static const char norm_bg[]       = "#0c141f"; /* Background Norm */
+static const char norm_border[]   = "#000000"; /* Unfocused Border */
 
-static const char sel_fg[]       = "#e6ffff"; /* Whittish */
-static const char sel_gb[]        = "#0c141f"; /* Dark Cyan */
-static const char sel_border[]       = "#000000"; /* Black */
+static const char sel_fg[]       = "#000000"; /* Text Selected */
+static const char sel_bg[]       = "#df740f"; /* Background Selected */
+static const char sel_border[]   = "#ffe64d"; /* Focused Border */
 
 static const char *colors[][3]      = {
 	    /*               fg           bg         border */

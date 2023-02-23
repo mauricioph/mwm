@@ -1,11 +1,11 @@
 /* Mauricio's theme of MWM */
-static const char norm_fg[]       = "#ffffff"; /* Text bar */
-static const char norm_bg[]       = "#090909"; /* bar */
-static const char norm_border[]       = "#858c91"; /* Border Bar*/
+static const char norm_fg[]    = "#ffffff"; /* Text norm */
+static const char norm_bg[]    = "#090909"; /* Background norm */
+static const char norm_border[]= "#858c91"; /* Border Unfocused */
 
-static const char sel_fg[]       = "#000000"; /* Text Sel */
-static const char sel_bg[]        = "#990000"; /* Select BG  */
-static const char sel_border[]       = "#993300"; /* Select Border */
+static const char sel_fg[]     = "#000000"; /* Text Sel */
+static const char sel_bg[]     = "#990000"; /* Background Sel  */
+static const char sel_border[] = "#993300"; /* Border Focused */
 
 
 static const char *colors[][3]      = {
