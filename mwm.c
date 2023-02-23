@@ -292,22 +292,15 @@ static const int topbar             = 0;        /* 0 means bottom bar */
 static const int user_bh            = 25;        /* 0 means that mwm will calculate bar height, >= 1 means mwm will user_bh as bar height */
 static const char *fonts[]          = { "SourceCodePro Bold:size=12", "awesomefont:size=12" };
 static const char dmenufont[]       = "SourceCodePro Bold:size=12";
-static const char col_orange[]       = "#df740f"; /* Orange */
-static const char col_bblue[]       = "#6fc3df"; /* Bright Blue */
-static const char col_byellow[]       = "#ffe64d"; /* Bright Yellow */
-static const char col_white[]       = "#e6ffff"; /* Whittish */
-static const char col_dcyan[]        = "#0c141f"; /* Dark Cyan */
-static const char col_black[]       = "#000000"; /* Black */
-static const char col_red[]         = "#ff0000"; /* Red for Urgency */
-static const char col_yellow[]      = "#ffff00"; /* Yelow to alert the user */
 
+#include "themes/colors-wal-dwm.h"
+/* colours loaded from themes folder 
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm]	= { col_bblue, col_dcyan,  col_bblue  },
-	[SchemeSel]	= { col_black, col_orange, col_orange },
-	[SchemeWarn]	= { col_byellow, col_red, col_yellow },
-	[SchemeUrgent]	= { col_white, col_red, col_red },
-};
+//               fg         bg         border 
+   [SchemeNorm]    = { col_fgschnor, col_bgschnor,  col_borschnor  },
+   [SchemeSel]     = { col_fgschsel, col_bgschsel, col_borschsel },
+
+}; */
 
 static const char *const autostart[] = {
 "mpv", "-fs", "/usr/share/sounds/Ps1-startup.mp4", NULL,
@@ -468,14 +461,14 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = lockcmd }},        /* Lock screen */
 	{ MODKEY,			XF86XK_LaunchA,  spawn,	   {.v = screenshotcmd }}, /* Screenshot */
 	{ MODKEY|ShiftMask,		XK_b,	   spawn,	   {.v = bookmarkcmd }},  /* Load bookmarked */
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_b,      togglebar,      {0} },                 /* toggle the bar */
+	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },          /*  move through the stack focus */
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },          /* Increase master stack size */
 	{ MODKEY,                       XK_o,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },        /* Increase slave size */
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
+	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} }, 
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[0]} },
@@ -491,16 +484,16 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-        { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
+        { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } }, /* Adjust gaps in twindle */
  	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
  	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
         TAGKEYS(                        XK_1,                      0)
         { MODKEY,		        XK_c,	   spawn,          SHCMD("mpv --no-cache --no-osc --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
-        { MODKEY,		        XF86XK_MonBrightnessDown,   spawn,       {.v = monbrgdw},
+        { MODKEY,		        XF86XK_MonBrightnessDown,   spawn,       {.v = monbrgdw}},  /* Monitor Brightness */
         { MODKEY,		        XF86XK_MonBrightnessUp,   spawn,         {.v = monbrgup}},
-        { MODKEY,		        XF86XK_KbdBrightnessDown,   spawn,       {.v = monbrgdw},
-        { MODKEY,		        XF86XK_KbdBrightnessUp,   spawn,         {.v = monbrgup},
-        { MODKEY,		        XF86XK_AudioMute,   spawn,               {.v = muteaud}},
+        { MODKEY,		        XF86XK_KbdBrightnessDown,   spawn,       {.v = monbrgdw}},
+        { MODKEY,		        XF86XK_KbdBrightnessUp,   spawn,         {.v = monbrgup}},  /* keyboard brightness */
+        { MODKEY,		        XF86XK_AudioMute,   spawn,               {.v = muteaud}},  /* Mute Audio */
         { MODKEY,		        XF86XK_AudioLowerVolume,   spawn,        {.v = lowervol}}, /* Lower audio */
         { MODKEY,		        XF86XK_AudioRaiseVolume,   spawn,        {.v = raisevol}}, /* Raise audio */
 
