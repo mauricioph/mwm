@@ -18,9 +18,12 @@
 # Variables
 mwmfolder="$HOME/.config/mwm"
 icon="${mwmfolder}/icon.png"
-unlocked="${mwmfolder}/unlocked.jpg"
-lockedone="${mwmfolder}/screen_locked1.png"
-locked="${mwmfolder}/screen_locked.png"
+lockerfolder="/run/user/$(id -u)/lockscreen"
+unlocked="${lockerfolder}/unlocked.jpg"
+lockedone="${lockerfolder}/screen_locked1.png"
+locked="${lockerfolder}/screen_locked.png"
+
+[[ ! -d "${lockerfolder}" ]] && mkdir -p "${lockerfolder}"
 
 # Take a screenshot and edit 
 scrot ${unlocked}
@@ -29,8 +32,11 @@ rm ${unlocked}
 convert ${lockedone}  "$icon" -gravity center -composite -font Helvetica -pointsize 32 -draw "gravity South fill black text 3,14 'Enter the password' fill blue  text 1,14 'Enter the password'" ${locked}
 rm ${lockedone}
 
+# Kill picom to avoid transparency
 # Lock screen displaying this image.
+kill -9 $(ps -ef | awk '/picom/ {print $2}' | xargs)
 i3lock -i ${locked}
 
 # Turn the screen off after a delay.
 sleep 300; pgrep i3lock && xset dpms force off
+rm ${locked}
