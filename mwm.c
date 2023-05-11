@@ -444,8 +444,8 @@ static const char *muteaud[] = {"/usr/bin/pactl", "set-sink-mute", "0", "toggle"
 static const char *monbrgdw[] = {"/usr/bin/brightnessctl", "s", "10-", NULL};
 static const char *monbrgup[] = {"/usr/bin/brightnessctl", "s", "+10", NULL};
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
-static char *statuscmds[] = { "notify-send Mouse$BUTTON" };
-static char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
+static char *statuscmd[] = { "notify-send Mouse$BUTTON" };
+static char *statuscmds[] = { "/bin/sh", "-c", NULL, NULL };
 
 static Key keys[] = {
 
